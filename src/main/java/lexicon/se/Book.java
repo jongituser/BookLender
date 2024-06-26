@@ -15,7 +15,6 @@ public class Book {
         this.available = true;
         this.currentOwner = null;
 
-
     }
 
     public String getId() {
@@ -49,20 +48,25 @@ public class Book {
     public void setCurrentOwner(Person currentOwner) {
         // todo: if the current owner is not null -> update the availability to false -> else change it to true
 
+        this.currentOwner = currentOwner;
+
         if (currentOwner != null)
             this.available = false;
         else {
             this.available = true;
         }
 
-        this.currentOwner = currentOwner;
+    }
 
+    public Person getCurrentOwner ()
+    {
+        return currentOwner;
     }
 
     public String getBookInformation()
 
     {
-        return String.format("BookID: " + id + "Title: " + title + "Author: " + author + "Available: " + available + "Owner: " + currentOwner);
+        return String.format("BookID: " + id + "\nTitle: " + title + "\nAuthor: " + author + "\nAvailable: " + available + "\nOwner: " + currentOwner);
     }
 
 

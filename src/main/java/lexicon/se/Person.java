@@ -18,7 +18,6 @@ public class Person
         this.loanedBook = false;
         this.returnedBook = false;
 
-
     }
 
     public String getId()
@@ -64,15 +63,32 @@ public class Person
         this.returnedBook = returnedBook;
     }
 
-    public void getBookLoanInformation()
-    {
+    public void loanBook(Book book) {
+        if (book.available()) {
+            book.setCurrentOwner(this);
+            this.loanedBook = true;
+            this.returnedBook = false;
+        }
+        else
+        {
+            System.out.println("Book is not available for loan.");
+        }
+    }
 
+    public void returnBook(Book book) {
+        if (book.getCurrentOwner() == this) {
+            book.setCurrentOwner(null);
+            this.loanedBook = false;
+            this.returnedBook = true;
+        } else {
+            System.out.println("This book is not loaned by you.");
+        }
     }
 
     public String getPersonInformation()
 
     {
- return String.format("PersonID: " + id + "First Name: " + firstName + "Last Name:  " + lastName + "Loaned book: " +loanedBook + "Returned book: " +returnedBook );
+ return String.format("PersonID: " + id + "\nFirst Name: " + firstName + "\nLast Name: " + lastName + "\nLoaned book: " +loanedBook + "\nReturned book: " +returnedBook );
     }
 
 }
